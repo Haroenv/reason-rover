@@ -65,19 +65,16 @@ let forward = rover =>
 type command =
   | F
   | L
-  | R;
+  | R
+  | Nothing;
 
 let command_to_string = command =>
   switch (command) {
   | F => "forwards"
   | L => "left"
   | R => "right"
+  | Nothing => "nothing"
   };
-
-let logRover = (~title="rover", rover) => {
-  Js.log3(title, rover.coordinate, rover.direction |> direction_to_string);
-  rover;
-};
 
 let rover_to_grid = rover => {
   let {direction, coordinate: (x, y)} = rover;
@@ -104,15 +101,22 @@ let run = (command, rover) =>
   | F => rover |> forward
   | L => rover |> left
   | R => rover |> right
+  | Nothing => rover
   };
 
-let runAndLogGrid = (command, rover) => {
-  let result = run(command, rover);
-  result |> rover_to_string |> Js.log;
-  command |> command_to_string |> Js.log;
-  result |> rover_to_grid |> print_grid;
-  result;
+[@bs.val] external consoleGroup : string => unit = "console.group";
+[@bs.val] external consoleGroupEnd : unit => unit = "console.groupEnd";
+
+let logRover = (~command=Nothing, rover) => {
+  rover |> rover_to_string |> consoleGroup;
+  command |> command_to_string |> Js.log2("command");
+  rover |> rover_to_grid |> print_grid;
+  consoleGroupEnd();
+  rover;
 };
+
+let runAndLogGrid = (command, rover) =>
+  run(command, rover) |> logRover(~command);
 
 let executeCommands = (commands, rover) =>
   Js.Array.reduce(
