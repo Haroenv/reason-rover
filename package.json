@@ -1,5 +1,7 @@
 {
   "name": "reason-rover",
+  "private": true,
+  "homepage": "https://reason-rover.now.sh",
   "version": "0.1.0",
   "scripts": {
     "build:re": "bsb -make-world",
@@ -11,7 +13,7 @@
     "dev": "concurrently 'yarn start:re' 'serve'"
   },
   "keywords": ["BuckleScript"],
-  "author": "",
+  "author": "Haroen Viaene",
   "license": "MIT",
   "devDependencies": {
     "bs-platform": "^3.1.4",
