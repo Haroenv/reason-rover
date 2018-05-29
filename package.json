@@ -1,0 +1,24 @@
+{
+  "name": "reason-rover",
+  "version": "0.1.0",
+  "scripts": {
+    "build:re": "bsb -make-world",
+    "start:re": "bsb -make-world -w",
+    "clean:re": "bsb -clean-world",
+    "build:js": "rollup",
+    "start": "yarn build:re && yarn build:js && serve",
+    "dev": "concurrently 'yarn start:re' 'serve'"
+  },
+  "keywords": ["BuckleScript"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "bs-platform": "^3.1.4",
+    "concurrently": "^3.5.1",
+    "rollup": "^0.59.4"
+  },
+  "dependencies": {
+    "reason-react": "^0.4.2",
+    "serve": "^7.0.1"
+  }
+}
