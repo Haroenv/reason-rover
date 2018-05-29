@@ -5,8 +5,9 @@
     "build:re": "bsb -make-world",
     "start:re": "bsb -make-world -w",
     "clean:re": "bsb -clean-world",
-    "build:js": "rollup",
-    "start": "yarn build:re && yarn build:js && serve",
+    "build:js": "echo 'rollup not yet implemented'",
+    "build": "yarn build:re && yarn build:js",
+    "start": "serve",
     "dev": "concurrently 'yarn start:re' 'serve'"
   },
   "keywords": ["BuckleScript"],
