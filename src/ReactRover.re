@@ -15,9 +15,12 @@ let make = _children => {
   reducer: (action, state) => {
     let rover = Rover.run(action, state.rover);
     /*
-      try (Rover.run(action, state.rover)) {
+      let rover = try (Rover.run(action, state.rover)) {
          | Invalid_argument(error) =>
-           ReasonReact.Update({rover: state.rover, error: "oops"})
+           ReasonReact.Update({
+             rover: state.rover,
+             error: error |> error_to_string
+           })
          };
      */
     ReasonReact.Update({...state, rover});
