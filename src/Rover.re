@@ -80,9 +80,9 @@ let logRover = (~title="rover", rover) => {
 };
 
 let rover_to_grid = rover => {
-  let {direction, coordinate: (y, x)} = rover;
+  let {direction, coordinate: (x, y)} = rover;
   let grid = Array.make_matrix(10, 10, {j|⭕️|j});
-  grid[x][y] = (
+  grid[y][x] = (
     switch (direction) {
     | N => {j|⬆️|j}
     | E => {j|➡️|j}
@@ -94,11 +94,7 @@ let rover_to_grid = rover => {
 };
 
 let grid_to_string = (grid: array(array(string))) =>
-  Js.Array.reduce(
-    (old, item) => old ++ "\n" ++ Js.Array.joinWith("", item),
-    "",
-    grid,
-  );
+  grid |> Js.Array.map(Js.Array.joinWith("")) |> Js.Array.joinWith("\n");
 
 let print_grid = grid =>
   Js.log2("%c" ++ grid_to_string(grid), "font-family: monospace");
