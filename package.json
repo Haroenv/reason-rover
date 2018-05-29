@@ -1,7 +1,7 @@
 {
   "name": "reason-rover",
   "private": true,
-  "homepage": "https://reason-rover.now.sh",
+  "homepage": "https://reason-rover.netlify.com",
   "version": "0.1.0",
   "scripts": {
     "build:re": "bsb -make-world",

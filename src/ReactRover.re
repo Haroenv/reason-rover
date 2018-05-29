@@ -27,6 +27,11 @@ let make = _children => {
   },
   render: self =>
     <div>
+      <a
+        href="https://github.com/Haroenv/reason-rover"
+        style=(ReactDOMRe.Style.make(~fontSize=".5em", ()))>
+        ("Find me on GitHub" |> ReasonReact.string)
+      </a>
       <pre>
         (
           self.state.rover
